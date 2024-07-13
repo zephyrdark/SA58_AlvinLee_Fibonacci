@@ -2,26 +2,25 @@ package com.coin.sa58_alvinlee_fibonacci.service;
 
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.math.BigDecimal;
+import java.util.*;
 
 @Service
 public class CoinService {
 
-    private final float[] availableCoins = {1000f, 100f, 50f, 10f, 5f, 2f, 1f, 0.5f, 0.2f, 0.1f, 0.05f, 0.01f};  //todo: consider alternative location/db
+    public Map<BigDecimal, Integer> calculateMinimum(String targetAmount, List<String> coinDenominations) {
+        Map<BigDecimal, Integer> minimumCoins = new HashMap<>();
+        List<BigDecimal> availableCoins = coinDenominations.stream().map(BigDecimal::new).sorted(Comparator.reverseOrder()).toList();
+        BigDecimal remainingAmount = new BigDecimal(targetAmount);
 
-    public Map<Float, Integer> getMinimumCoins(float targetAmount) {
-        Map<Float, Integer> minimumCoins = new HashMap<>();
-        float remainingAmount = targetAmount;
-
-        for (float coin : availableCoins) {
-            while (remainingAmount >= coin) {
+        for (BigDecimal coin : availableCoins) {
+            while (coin.compareTo(remainingAmount) <= 0) {
                 if (!minimumCoins.containsKey(coin)) {
                     minimumCoins.put(coin, 1);
                 } else {
                     minimumCoins.put(coin, minimumCoins.get(coin) + 1);
                 }
-                remainingAmount -= coin;
+                remainingAmount = remainingAmount.subtract(coin);
             }
         }
         return minimumCoins;

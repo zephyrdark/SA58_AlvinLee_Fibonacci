@@ -2,27 +2,53 @@ package com.coin.sa58_alvinlee_fibonacci.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class CoinRequest {
 
-    Map<Float, Integer> minimumCoins;
-    List<Float> coinDenominations;
+//    @DecimalMin(value = "0", message = "Target amount must be within the range between 0 and 10,000.00")
+//    @DecimalMax(value = "10000.00", message = "Target amount must be within the range between 0 and 10,000.00")
+    String targetAmount;
+    List<String> coinDenominations;
+    Map<BigDecimal, Integer> minimumCoins;
 
-    public CoinRequest(List<Float> coinDenominations) {
+    public CoinRequest() {
+        targetAmount = "0";
+        coinDenominations = new ArrayList<>();
         minimumCoins = new HashMap<>();
+    }
+
+    @JsonProperty
+    public String getTargetAmount() {
+        return targetAmount;
+    }
+
+    @JsonProperty
+    public void setTargetAmount(String targetAmount) {
+        this.targetAmount = targetAmount;
+    }
+
+    @JsonProperty
+    public List<String> getCoinDenominations() {
+        return coinDenominations;
+    }
+
+    @JsonProperty
+    public void setCoinDenominations(List<String> coinDenominations) {
         this.coinDenominations = coinDenominations;
     }
 
     @JsonProperty
-    public Map<Float, Integer> getMinimumCoins() {
+    public Map<BigDecimal, Integer> getMinimumCoins() {
         return minimumCoins;
     }
 
     @JsonProperty
-    public void setMinimumCoins(Map<Float, Integer> minimumCoins) {
+    public void setMinimumCoins(Map<BigDecimal, Integer> minimumCoins) {
         this.minimumCoins = minimumCoins;
     }
 
