@@ -20,9 +20,32 @@ function CoinRequest({myCoinRequest}) {
         console.log(isChecked);
     };
 
+    const headers = {
+        "Content-Type": "application/json",
+        mode: "cors",
+    };
+
+    const inputField = document.getElementById("targetAmount").value;
+
+    const submit = (event) => {
+        myCoinRequest = {
+            targetAmount: parseFloat(inputField).toFixed(2),
+            coinDenominations: isChecked.map(x => coinDenominations[x]),
+            minimumCoins: {}
+        }
+        console.log(JSON.stringify(myCoinRequest));
+        axios
+            .post("http://localhost:8080/api/coin-request", {headers}, myCoinRequest)
+            .then(response => {
+                // updateMyCoinRequestDetails(response.data);
+                console.log(response.data);
+            })
+            .catch(e => {
+                console.log(e);
+            });
+    }
+
     const coinDenominations = [1000, 100, 50, 10, 5, 2, 1, 0.5, 0.2, 0.1, 0.05, 0.01]
-    // const coinDenominations = [{"1": 1000}, {"2":100}, {"3":50}, {"4":10}, {"5":5},
-    //     {"6":2}, {"7":1}, {"8":0.5}, {"9":0.2}, {"10":0.1}, {"11":0.05}, {"12":0.01}]
 
     const listCoins = coinDenominations.map(value =>
         <li className="CoinRequest-list-item">
@@ -37,19 +60,6 @@ function CoinRequest({myCoinRequest}) {
             {value.toString()}
         </li>
     );
-    // const listCoins = Object.entries(coinDenominations).map(([key,value]) =>
-    //     <li className="CoinRequest-list-item">
-    //         <label>
-    //             <input
-    //                 id={"coin-denomination-id-"+{key}}
-    //                 type="checkbox"
-    //                 checked={isChecked}
-    //                 onChange={(event) => handleCheckboxChange({key}, event)}
-    //             />
-    //         </label>
-    //         {value.toString()}
-    //     </li>
-    // );
 
     return (
         <div className="CoinRequest">
@@ -57,8 +67,8 @@ function CoinRequest({myCoinRequest}) {
                 {listCoins}
             </ul>
             <div className="input-group mb-3">
-                <input type="number" aria-label="Target Amount" placeholder="Between 0 to 10000"></input>
-                <Button variant="primary" as="input" type="submit" value="Submit"></Button>
+                <input id="targetAmount" type="number" step=".01" aria-label="Target Amount" placeholder="Between 0 to 10000"></input>
+                <Button variant="primary" as="input" type="submit" value="Submit" onClick={submit}></Button>
             </div>
         </div>
     )
