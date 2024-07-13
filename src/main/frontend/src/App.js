@@ -18,15 +18,18 @@ function App() {
     };
 
     function retrieveCoinRequest() {
-        axios
-            .get("http://localhost:8080/api/coin-request", {headers})
-            .then(response => {
-                updateMyCoinRequestDetails(response.data);
-                console.log(response.data);
-            })
-            .catch(e => {
-                console.log(e);
-            });
+        if (myCoinRequestDetails.length === 0) {
+            axios
+                .get("http://localhost:8080/api/coin-request", {headers})
+                .then(response => {
+                    updateMyCoinRequestDetails(response.data);
+                    console.log(response.data);
+                    console.log(JSON.stringify(response.data));
+                })
+                .catch(e => {
+                    console.log(e);
+                });
+        }
     }
 
     return (

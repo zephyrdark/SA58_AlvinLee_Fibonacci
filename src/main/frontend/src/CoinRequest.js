@@ -1,43 +1,55 @@
 import './CoinRequest.css';
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
 
 function CoinRequest({myCoinRequest}) {
-    // checkboxes
+    // TODO: get available/validated coinDenominations from backend
+    const coinDenominations = [1000, 100, 50, 10, 5, 2, 1, 0.5, 0.2, 0.1, 0.05, 0.01]
+
+    // Coin Denominations Checkboxes
     const [isChecked, setIsChecked] = useState([]);
     const handleCheckboxChange = (id, event) => {
         const arr = [...isChecked]; // creates new copy of array so the same elements are not referenced
         const index = arr.indexOf(id);
-        if(index === -1) {
-            arr.push(id);
-        }
-        else {
-            arr.splice(index, 1);
-        }
+        (index === -1) ? arr.push(id) : arr.splice(index, 1);
         setIsChecked(arr);
-        console.log(id);
-        console.log(isChecked);
     };
 
-    const headers = {
-        "Content-Type": "application/json",
-        mode: "cors",
-    };
+    let outputHtml = document.getElementById("output");
 
-    const inputField = document.getElementById("targetAmount").value;
+    const handlePostResponse = (data) => {
+        const minimumCoinsMap = new Map(Object.entries(data.minimumCoins));
+        let outputArray = [];
+        outputHtml.innerHTML = ''
+        isChecked.forEach(value => {
+            let coin_denomination = coinDenominations[value].toFixed(2).toString()
+            for (let i = 0; i < minimumCoinsMap.get(coin_denomination); i++) {
+                outputArray.push(coin_denomination);
+            }
+        })
+        outputHtml.innerHTML += '[' + outputArray.join(', ') + ']';
+    }
 
+    // Target Amount
+    const inputField = document.getElementById("targetAmount");
+
+    // Submit function
     const submit = (event) => {
-        myCoinRequest = {
-            targetAmount: parseFloat(inputField).toFixed(2),
-            coinDenominations: isChecked.map(x => coinDenominations[x]),
+        let coinRequest = {
+            targetAmount: parseFloat(inputField.value).toFixed(2),
+            coinDenominations: isChecked.map(x => coinDenominations[x].toFixed(2)),
             minimumCoins: {}
         }
-        console.log(JSON.stringify(myCoinRequest));
+        const config = {
+            "ContentType": "application/json",
+            "Accept": "application/json",
+            "mode": "cors",
+        };
         axios
-            .post("http://localhost:8080/api/coin-request", {headers}, myCoinRequest)
+            .post("http://localhost:8080/api/coin-request", coinRequest, config)
             .then(response => {
-                // updateMyCoinRequestDetails(response.data);
+                handlePostResponse(response.data);
                 console.log(response.data);
             })
             .catch(e => {
@@ -45,8 +57,7 @@ function CoinRequest({myCoinRequest}) {
             });
     }
 
-    const coinDenominations = [1000, 100, 50, 10, 5, 2, 1, 0.5, 0.2, 0.1, 0.05, 0.01]
-
+    // const to list individual coinDenominations
     const listCoins = coinDenominations.map(value =>
         <li className="CoinRequest-list-item">
             <label>
@@ -63,12 +74,21 @@ function CoinRequest({myCoinRequest}) {
 
     return (
         <div className="CoinRequest">
-            <ul className="CoinRequest-list">
-                {listCoins}
-            </ul>
-            <div className="input-group mb-3">
-                <input id="targetAmount" type="number" step=".01" aria-label="Target Amount" placeholder="Between 0 to 10000"></input>
+            <div>
+                <ul className="CoinRequest-list">
+                    {listCoins}
+                </ul>
+            </div>
+            <div className="input-group mb-3 container-sm">
+                <label className="input-group-text">Target Amount:</label>
+                <input className="form-control" id="targetAmount" type="number" step=".01" aria-label="Target Amount" placeholder="Between 0 to 10,000.00"></input>
                 <Button variant="primary" as="input" type="submit" value="Submit" onClick={submit}></Button>
+            </div>
+            <div>
+                You will need these coins:
+                <div>
+                    <p id="output"></p>
+                </div>
             </div>
         </div>
     )
