@@ -10,7 +10,7 @@ function App() {
     useEffect(() => {
         console.log("Retrieving course list from server");
         retrieveCoinRequest();
-    }, []);
+    });
 
     const headers = {
         "Content-Type": "application/json",

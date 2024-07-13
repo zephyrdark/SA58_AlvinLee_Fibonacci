@@ -16,6 +16,8 @@ function CoinRequest({myCoinRequest}) {
             arr.splice(index, 1);
         }
         setIsChecked(arr);
+        console.log(id);
+        console.log(isChecked);
     };
 
     const coinDenominations = [1000, 100, 50, 10, 5, 2, 1, 0.5, 0.2, 0.1, 0.05, 0.01]
@@ -28,7 +30,7 @@ function CoinRequest({myCoinRequest}) {
                 <input
                     id={coinDenominations.indexOf(value)}
                     type="checkbox"
-                    checked={isChecked.indexOf(value) > -1}
+                    checked={isChecked.includes(coinDenominations.indexOf(value))}
                     onChange={(event) => handleCheckboxChange(coinDenominations.indexOf(value), event)}
                 />
             </label>
