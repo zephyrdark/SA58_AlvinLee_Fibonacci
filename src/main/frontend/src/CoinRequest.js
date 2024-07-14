@@ -38,6 +38,9 @@ function CoinRequest({myCoinRequest}) {
 
     // Submit function
     const submit = (event) => {
+        if (inputField === null) {
+            return;
+        }
         let targetAmountValue = parseFloat(inputField.value);
         if (isNaN(targetAmountValue) || targetAmountValue < 0 || targetAmountValue > 10000) {
             alert("Target Amount must be between 0 and 10,000.00.");
