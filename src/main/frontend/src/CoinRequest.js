@@ -38,11 +38,11 @@ function CoinRequest({myCoinRequest}) {
 
     // Submit function
     const submit = (event) => {
-        if (inputField === null) {
+        if (inputField.value === null || inputField.value === '') {
             return;
         }
         let targetAmountValue = parseFloat(inputField.value);
-        if (isNaN(targetAmountValue) || targetAmountValue < 0 || targetAmountValue > 10000) {
+        if (targetAmountValue < 0 || targetAmountValue > 10000) {
             alert("Target Amount must be between 0 and 10,000.00.");
             return;
         }
@@ -100,7 +100,7 @@ function CoinRequest({myCoinRequest}) {
             </div>
             <div className="input-group mb-3 container-sm">
                 <label className="input-group-text">Target Amount:</label>
-                <input className="form-control" id="targetAmount" type="number" min="0" max="10000" step=".01" aria-label="Target Amount" placeholder="Between 0 to 10,000.00"></input>
+                <input className="form-control" id="targetAmount" required type="number" min="0" max="10000" step=".01" aria-label="Target Amount" placeholder="Between 0 to 10,000.00"></input>
                 <Button variant="primary" as="input" type="submit" value="Submit" onClick={submit}></Button>
             </div>
             <div>
