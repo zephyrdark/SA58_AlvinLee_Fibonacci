@@ -33,19 +33,19 @@ This repository contains the project files for the frontend (React.js) and backe
 ### Git Clone
 In your target directory, run `git clone git@github.com:zephyrdark/SA58_AlvinLee_Fibonacci.git`
 
-#### Frontend (React.js App)
+### Frontend (React.js App)
 1. Change directory to `/SA58_AlvinLee_Fibonacci/src/main/frontend`.
 2. Build the React App by running: `npm run build`
 3. Serve the React App by running: `serve -s build`
 
-#### Backend (Spring Boot Server)
+### Backend (Spring Boot Server)
 1. Change directory to `/SA58_AlvinLee_Fibonacci`.
 2. Start your application by running: `docker compose up --build`.
 3. Your application will be available at http://localhost:8080.
 
-### Deploying your application to the cloud
+## 5. Deploying your application to the cloud
 Consult Docker's [getting started](https://docs.docker.com/go/get-started-sharing/)
 docs for more detail on building and pushing.
 
-## Docker Image 
+## 6. Docker Image 
 Docker image of this project is automatically build and pushed using GitHub Actions workflow, and is available at https://hub.docker.com/repository/docker/alvinlee24/fibonacci-coins/general.
