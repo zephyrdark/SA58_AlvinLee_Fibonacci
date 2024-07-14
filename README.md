@@ -1,4 +1,4 @@
-# SA58_AlvinLee_Fibonacci
+# Coin Change Calculator
 
 ## 1. Description
 REST API webservice that calculates minimum number of coins needed to make up a target amount. Deployed on AWS EC2.
@@ -84,11 +84,12 @@ git clone git@github.com:zephyrdark/SA58_AlvinLee_Fibonacci.git
 
 ### Backend (Spring Boot Server)
 1. Change directory to `/SA58_AlvinLee_Fibonacci`.
-2. Start your application by running:
+2. Ensure that your `Docker Desktop` is running.
+3. Start your application by running:
    ```
    docker compose up --build
    ```
-3. It will be available at `http://localhost:8080/api/coin-request`, but it is recommended to use Postman as described in [Various Usages](https://github.com/zephyrdark/SA58_AlvinLee_Fibonacci/blob/main/README.md#2-various-usages).
+4. It will be available at `http://localhost:8080/api/coin-request`, but it is recommended to use Postman as described in [Various Usages](https://github.com/zephyrdark/SA58_AlvinLee_Fibonacci/blob/main/README.md#2-various-usages).
 
 ## 5. Deploying your application to the cloud
 Consult Docker's [getting started](https://docs.docker.com/go/get-started-sharing/)
