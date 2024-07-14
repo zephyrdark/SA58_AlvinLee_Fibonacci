@@ -1,7 +1,11 @@
 # SA58_AlvinLee_Fibonacci
 
 ## 1. Description
-REST API webservice that receives a `targetAmount` e.g., `1250.00` and an array of `coinDenominations` e.g., `["1000.0","100.0","50.0"]`.
+REST API webservice that calculates minimum number of coins needed to make up a target amount.
+
+The inputs  are:
+- Target amount – amount of money you need to make up to. Target amount must be within the range between 0 and 10,000.00
+- Coin denominations – a list of coin denominations to be used to make up the target amount. Coin denomination must be one of the following values [0.01, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 50, 100, 1000]
 
 It returns a JSON that states the target amount, coin denominations, and the minimum number of coins required to get the target amount e.g., `{"targetAmount":"1250.00","coinDenominations":[1000.0,100.0,50.0],"minimumCoins":{"1000.0":1,"100.0":2,"50":1}}`.
 
