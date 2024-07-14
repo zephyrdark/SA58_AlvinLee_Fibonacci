@@ -23,7 +23,7 @@ public class ApiCoinController {
         this.coinService = coinService;
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin
     @GetMapping("coin-request")
     public ResponseEntity<?> coinRequest() {
         CoinRequest cr = new CoinRequest();
@@ -31,7 +31,7 @@ public class ApiCoinController {
         return new ResponseEntity<> (cr, HttpStatus.OK);
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin
     @PostMapping("coin-request")
     public ResponseEntity<?> coinRequest(@RequestBody CoinRequest coinRequest) { //todo: to implement receiving array/object as JSON, consider Validation
         coinRequest.setMinimumCoins(coinService.calculateMinimum(coinRequest.getTargetAmount(), coinRequest.getCoinDenominations()));
