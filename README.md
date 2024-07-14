@@ -15,8 +15,8 @@ This repository contains the project files for the frontend (React.js) and backe
 - Test the api via frontend UI at http://13.54.119.163:3000/
 - Test the api via backend at Postman
     > Example POST Request: http://13.54.119.163:8080/api/coin-request
-    > Body, raw, JSON:
     > ```
+    > HTTP Body, raw, JSON:
     > {
     >     "targetAmount": 1250.0,
     >     "coinDenominations": [1000.0,100.0,50.0]
