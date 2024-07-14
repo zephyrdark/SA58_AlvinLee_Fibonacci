@@ -20,9 +20,8 @@ The project is not fully fleshed out, and is still lacking the following:
 ## 2. Various Usages
 - Test the api via frontend UI at http://13.54.119.163:3000/
 - Test the api via backend at Postman
-    > Example POST Request: http://13.54.119.163:8080/api/coin-request
+    > Example POST Request: http://13.54.119.163:8080/api/coin-request, HTTP Body, raw, JSON:
     > ```
-    > HTTP Body, raw, JSON:
     > {
     >     "targetAmount": 1250.0,
     >     "coinDenominations": [1000.0,100.0,50.0]
@@ -47,29 +46,47 @@ The project is not fully fleshed out, and is still lacking the following:
     
 - Access the api via command line
     - Linux:
-    > `curl -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"targetAmount": 1250.0,"coinDenominations": [1000.0,100.0,50.0]}' http://13.54.119.163:8080/api/coin-request`
+    > ```
+    > curl -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"targetAmount": 1250.0,"coinDenominations": [1000.0,100.0,50.0]}' http://13.54.119.163:8080/api/coin-request
+    > ```
     > ![image](https://github.com/user-attachments/assets/664a313a-8022-451e-b5e7-ab809236a2fd)
 
 - Cloning and building your own project.
 
 ## 3. Running the web service locally using project files (Using IDE)
 1. Using any modern IDEs (Recommended: Intellij), clone the project from Version Control System, using `git@github.com:zephyrdark/SA58_AlvinLee_Fibonacci.git`.
-2. Change directory to `/SA58_AlvinLee_Fibonacci/src/main/frontend`. Run the React App by running: `npm start`. It will be available at `http://localhost:3000`.
+2. Change directory to `/SA58_AlvinLee_Fibonacci/src/main/frontend`. Run the React App by running:
+   ```
+   npm start
+   ```
+   It will be available at `http://localhost:3000`.
 3. Run the Spring Boot application. It will be available at `http://localhost:8080/api/coin-request`, but it is recommended to use Postman as described in Usage Section.
 
 ## 4. Building and running the web service locally using project files (Without IDE)
 
 ### Git Clone
-In your target directory, run `git clone git@github.com:zephyrdark/SA58_AlvinLee_Fibonacci.git`
+In your target directory, run 
+```
+git clone git@github.com:zephyrdark/SA58_AlvinLee_Fibonacci.git
+```
 
 ### Frontend (React.js App)
 1. Change directory to `/SA58_AlvinLee_Fibonacci/src/main/frontend`.
-2. Build the React App by running: `npm run build`
-3. Serve the React App by running: `serve -s build`
+2. Build the React App by running:
+   ```
+   npm run build
+   ```
+3. Serve the React App by running:
+   ```
+   serve -s build
+   ```
 
 ### Backend (Spring Boot Server)
 1. Change directory to `/SA58_AlvinLee_Fibonacci`.
-2. Start your application by running: `docker compose up --build`.
+2. Start your application by running:
+   ```
+   docker compose up --build
+   ```
 3. Your application will be available at http://localhost:8080.
 
 ## 5. Deploying your application to the cloud
