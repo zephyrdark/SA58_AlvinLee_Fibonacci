@@ -10,8 +10,6 @@ import java.util.Map;
 
 public class CoinRequest {
 
-//    @DecimalMin(value = "0", message = "Target amount must be within the range between 0 and 10,000.00")
-//    @DecimalMax(value = "10000.00", message = "Target amount must be within the range between 0 and 10,000.00")
     String targetAmount;
     List<String> coinDenominations;
     Map<BigDecimal, Integer> minimumCoins;

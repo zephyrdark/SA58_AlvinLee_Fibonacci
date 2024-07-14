@@ -40,11 +40,7 @@ function App() {
                     <CoinRequest myCoinRequest={myCoinRequestDetails} />
                 </div>
 
-                <img src={"https://i.imgflip.com/8wsrx9.jpg"}
-                     alt={"request for target-amount and coin-denominations, in exchange of list of coins"}/>
-
                 <a className="App-link" href={"https://github.com/zephyrdark"}>By Alvin Lee - Github</a>
-
             </header>
         </div>
     );
