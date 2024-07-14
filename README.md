@@ -9,7 +9,7 @@ The inputs  are:
 
 It returns a JSON that states the target amount, coin denominations, and the minimum number of coins required to get the target amount e.g., `{"targetAmount":"1250.00","coinDenominations":[1000.0,100.0,50.0],"minimumCoins":{"1000.0":1,"100.0":2,"50":1}}`.
 
-This repository contains the project files for the frontend (React.js) and backend (Java OpenJDK-17, Spring Boot).
+This repository contains the project files for the frontend (React.js) and backend (Java 17, Spring Boot).
 
 ## 2. Usage
 1. Test the api via frontend UI at http://13.54.119.163:3000/
