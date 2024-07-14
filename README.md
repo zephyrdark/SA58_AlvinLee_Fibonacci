@@ -23,6 +23,12 @@ This repository contains the project files for the frontend (React.js) and backe
 
 4. Cloning and building your own project.
 
+### Disclaimer
+The project is not fully fleshed out, and is still lacking the following:
+1. Backend Validations
+2. Frontend (Mobile) Validations
+3. Frontend (Web/Mobile) Tests
+
 ## 3. Running the web service locally using project files (Using IDE)
 1. Using any modern IDEs (Recommended: Intellij), clone the project from Version Control System, using `git@github.com:zephyrdark/SA58_AlvinLee_Fibonacci.git`.
 2. Change directory to `/SA58_AlvinLee_Fibonacci/src/main/frontend`. Run the React App by running: `npm start`. It will be available at `http://localhost:3000`.
