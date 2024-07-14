@@ -11,6 +11,12 @@ It returns a JSON that states the target amount, coin denominations, and the min
 
 This repository contains the project files for the frontend (React.js) and backend (Java 17, Spring Boot).
 
+### *_Disclaimer_
+The project is not fully fleshed out, and is still lacking the following:
+1. Backend Validations
+2. Frontend (Mobile) Validations
+3. Frontend (Web/Mobile) Tests
+
 ## 2. Various Usages
 - Test the api via frontend UI at http://13.54.119.163:3000/
 - Test the api via backend at Postman
@@ -45,12 +51,6 @@ This repository contains the project files for the frontend (React.js) and backe
     > ![image](https://github.com/user-attachments/assets/664a313a-8022-451e-b5e7-ab809236a2fd)
 
 - Cloning and building your own project.
-
-### Disclaimer
-The project is not fully fleshed out, and is still lacking the following:
-1. Backend Validations
-2. Frontend (Mobile) Validations
-3. Frontend (Web/Mobile) Tests
 
 ## 3. Running the web service locally using project files (Using IDE)
 1. Using any modern IDEs (Recommended: Intellij), clone the project from Version Control System, using `git@github.com:zephyrdark/SA58_AlvinLee_Fibonacci.git`.
