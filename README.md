@@ -9,7 +9,7 @@ It returns a JSON that states the target amount, coin denominations, and the min
 1. Test the api via frontend UI at http://13.54.119.163:3000/
 2. Test the api via backend at Postman
     > POST: http://13.54.119.163:8080/api/coin-request
-    > Body, raw, JSON: {"targetAmount": 1250.0,"coinDenominations": [1000.0,100.0,50.0]}
+    > Body, raw, JSON: `{"targetAmount": 1250.0,"coinDenominations": [1000.0,100.0,50.0]}`
 3. Access the api via command line
     - Linux:
     > `curl -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"targetAmount": 1250.0,"coinDenominations": [1000.0,100.0,50.0]}' http://13.54.119.163:8080/api/coin-request`
