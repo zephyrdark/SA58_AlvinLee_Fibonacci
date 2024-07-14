@@ -80,6 +80,7 @@ git clone git@github.com:zephyrdark/SA58_AlvinLee_Fibonacci.git
    ```
    serve -s build
    ```
+4. It will be available at `http://localhost:3000`.
 
 ### Backend (Spring Boot Server)
 1. Change directory to `/SA58_AlvinLee_Fibonacci`.
@@ -87,7 +88,7 @@ git clone git@github.com:zephyrdark/SA58_AlvinLee_Fibonacci.git
    ```
    docker compose up --build
    ```
-3. Your application will be available at http://localhost:8080.
+3. It will be available at `http://localhost:8080/api/coin-request`, but it is recommended to use Postman as described in Usage Section.
 
 ## 5. Deploying your application to the cloud
 Consult Docker's [getting started](https://docs.docker.com/go/get-started-sharing/)
