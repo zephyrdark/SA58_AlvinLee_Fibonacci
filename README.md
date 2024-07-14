@@ -4,24 +4,47 @@
 REST API webservice that calculates minimum number of coins needed to make up a target amount. Deployed on AWS EC2.
 
 The inputs  are:
-- Target amount – amount of money you need to make up to. Target amount must be within the range between 0 and 10,000.00
-- Coin denominations – a list of coin denominations to be used to make up the target amount. Coin denomination must be one of the following values [0.01, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 50, 100, 1000]
+- Target amount – amount of money you need to make up to. Target amount must be within the range between 0 and 10,000.00.
+- Coin denominations – a list of coin denominations to be used to make up the target amount. Coin denomination must be one of the following values `[0.01, 0.05, 0.1, 0.2, 0.5, 1, 2, 5, 10, 50, 100, 1000]`.
 
 It returns a JSON that states the target amount, coin denominations, and the minimum number of coins required to get the target amount e.g., `{"targetAmount":"1250.00","coinDenominations":[1000.0,100.0,50.0],"minimumCoins":{"1000.0":1,"100.0":2,"50":1}}`.
 
 This repository contains the project files for the frontend (React.js) and backend (Java 17, Spring Boot).
 
-## 2. Usage
-1. Test the api via frontend UI at http://13.54.119.163:3000/
-2. Test the api via backend at Postman
-    > POST: http://13.54.119.163:8080/api/coin-request
-    > Body, raw, JSON: `{"targetAmount": 1250.0,"coinDenominations": [1000.0,100.0,50.0]}`
-3. Access the api via command line
+## 2. Various Usages
+- Test the api via frontend UI at http://13.54.119.163:3000/
+- Test the api via backend at Postman
+    > Example POST Request: http://13.54.119.163:8080/api/coin-request
+    > Body, raw, JSON:
+    > ```
+    > {
+    >     "targetAmount": 1250.0,
+    >     "coinDenominations": [1000.0,100.0,50.0]
+    > }
+    > ```
+    > Expected POST Response on Status `200 OK`:
+    > ```
+    > {
+    >     "targetAmount": "1250.0",
+    >     "coinDenominations": [
+    >         "1000.0",
+    >         "100.0",
+    >         "50.0"
+    >     ],
+    >     "minimumCoins": {
+    >         "1000.0": 1,
+    >         "100.0": 2,
+    >         "50.0": 1
+    >     }
+    > }
+    > ```
+    
+- Access the api via command line
     - Linux:
     > `curl -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"targetAmount": 1250.0,"coinDenominations": [1000.0,100.0,50.0]}' http://13.54.119.163:8080/api/coin-request`
     > ![image](https://github.com/user-attachments/assets/664a313a-8022-451e-b5e7-ab809236a2fd)
 
-4. Cloning and building your own project.
+- Cloning and building your own project.
 
 ### Disclaimer
 The project is not fully fleshed out, and is still lacking the following:
