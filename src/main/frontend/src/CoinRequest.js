@@ -68,7 +68,7 @@ function CoinRequest({myCoinRequest}) {
             "mode": "cors",
         };
         axios
-            .post("http://localhost:8080/api/coin-request", coinRequest, config)
+            .post("http://13.54.119.163:8080/api/coin-request", coinRequest, config)
             .then(response => {
                 handlePostResponse(response.data);
                 console.log(response.data);
