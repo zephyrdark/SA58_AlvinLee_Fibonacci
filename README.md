@@ -1,7 +1,7 @@
 # SA58_AlvinLee_Fibonacci
 
 ## 1. Description
-REST API webservice that calculates minimum number of coins needed to make up a target amount.
+REST API webservice that calculates minimum number of coins needed to make up a target amount. Deployed on AWS EC2.
 
 The inputs  are:
 - Target amount – amount of money you need to make up to. Target amount must be within the range between 0 and 10,000.00
