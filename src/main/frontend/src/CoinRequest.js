@@ -38,10 +38,12 @@ function CoinRequest({myCoinRequest}) {
 
     // Submit function
     const submit = (event) => {
-        if (inputField.value === null || inputField.value === '') {
+        let value = inputField.value;
+        if (value === '') {
+            alert("Target Amount must be between 0 and 10,000.00.");
             return;
         }
-        let targetAmountValue = parseFloat(inputField.value);
+        let targetAmountValue = parseFloat(value);
         if (targetAmountValue < 0 || targetAmountValue > 10000) {
             alert("Target Amount must be between 0 and 10,000.00.");
             return;
