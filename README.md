@@ -14,8 +14,9 @@ This repository contains the project files for the frontend (React.js) and backe
 ### *_Disclaimer_
 The project is not fully fleshed out, and is still lacking the following:
 1. Backend Validations
-2. Frontend (Mobile) Validations
-3. Frontend (Web/Mobile) Tests
+2. Comprehensive Backend Tests
+3. Frontend (Mobile) Validations
+4. Frontend (Web/Mobile) Tests
 
 ## 2. Various Usages
 - Test the api via frontend UI at http://13.54.119.163:3000/
