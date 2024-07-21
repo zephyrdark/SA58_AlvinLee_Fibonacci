@@ -13,7 +13,7 @@ ARG NODE_VERSION=20.13.1
 FROM node:${NODE_VERSION}-alpine as base
 
 # Set working directory for all build stages.
-WORKDIR /usr/src/app
+WORKDIR /usr/src/app/frontend-react
 
 
 ################################################################################
@@ -61,8 +61,8 @@ COPY package.json .
 
 # Copy the production dependencies from the deps stage and also
 # the built application from the build stage into the image.
-COPY --from=deps /usr/src/app/node_modules ./node_modules
-COPY --from=build /usr/src/app//build .//build
+COPY --from=deps /usr/src/app/frontend-react/node_modules ./node_modules
+COPY --from=build /usr/src/app/frontend-react//build .//build
 
 
 # Expose the port that the application listens on.

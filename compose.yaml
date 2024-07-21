@@ -1,0 +1,47 @@
+# Docker provided references:
+# https://docs.docker.com/go/compose-spec-reference/
+# https://github.com/docker/awesome-compose
+
+##compose.yaml created by `docker init` in frontend folder, pasted here for reference.
+#services:
+#  server:
+#    build:
+#      context: backend-spring
+#    ports:
+#      - 8080:8080
+
+##compose.yaml created by `docker init` in frontend folder, pasted here for reference.
+#services:
+#  server:
+#    build:
+#      context: .
+#    environment:
+#      NODE_ENV: production
+#    ports:
+#      - 3000:3000
+
+# reference : https://github.com/docker/awesome-compose/blob/master/react-java-mysql/compose.yaml
+services:
+  backend:
+    build: backend-spring
+    restart: always
+    networks:
+      - react-spring
+
+  frontend:
+    build:
+      context: frontend-react
+      target: development
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend-react/src
+      - ./frontend-react/node_modules
+    networks:
+      - react-spring
+    depends_on:
+      - backend
+
+networks:
+  react-spring: {}
+  spring-mysql: {}
