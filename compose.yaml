@@ -23,8 +23,9 @@
 # reference : https://github.com/docker/awesome-compose/blob/master/react-java-mysql/compose.yaml
 services:
   backend:
-    build: backend-spring
-    dockerfile: Dockerfile
+    build:
+      context: backend-spring
+      dockerfile: Dockerfile
     restart: always
     ports:
       - 8080:8080
@@ -32,7 +33,7 @@ services:
   frontend:
     build:
       context: frontend-react
-    dockerfile: Dockerfile
+      dockerfile: Dockerfile
     stdin_open: true
     tty: true
     ports:
