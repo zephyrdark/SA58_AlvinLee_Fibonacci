@@ -31,13 +31,9 @@ services:
   frontend:
     build:
       context: frontend-react
-#      target: development # defines the stage to build as defined inside a multi-stage Dockerfile. Since backend-spring Dockerfile is only single stage, commented this out.
     stdin_open: true
     tty: true
     ports:
       - 3000:3000
-    volumes:
-      - /frontend-react/src
-      - /frontend-react/node_modules
     depends_on:
       - backend

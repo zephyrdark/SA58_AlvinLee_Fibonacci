@@ -10,7 +10,7 @@ ARG NODE_VERSION=20.13.1
 FROM node:${NODE_VERSION}-alpine as base
 
 # Set working directory for all build stages.
-WORKDIR /usr/src/app
+WORKDIR /app
 
 
 ################################################################################
@@ -36,11 +36,14 @@ RUN --mount=type=bind,source=package.json,target=package.json \
     --mount=type=bind,source=package-lock.json,target=package-lock.json \
     --mount=type=cache,target=/root/.npm \
     npm ci
+# Copy package.json so that package manager commands can be used.
+COPY package*.json .
+
+RUN npm install
 
 # Copy the rest of the source files into the image.
 COPY . .
-# Install `serve` to run the application.
-RUN npm install -g serve
+
 # Run the build script.
 RUN npm run build --omit=dev
 
@@ -52,28 +55,24 @@ FROM base as final
 # Use production node environment by default.
 ENV NODE_ENV production
 
-# Run the application as a non-root user.
-USER node
-
 # Copy package.json so that package manager commands can be used.
 COPY package.json .
 
 # Copy the production dependencies from the deps stage and also
 # the built application from the build stage into the image.
-COPY --from=deps /usr/src/app/node_modules ./node_modules
-COPY --from=build /usr/src/app/build ./build
+COPY --from=deps /app/node_modules ./node_modules
+COPY --from=build /app/build ./build
+COPY --from=build /app/public ./public
+COPY --from=build /app/src ./src
 
+## Install `serve` to run the application.
+RUN npm install -g serve
 
-## Expose the port that the application listens on.
-#EXPOSE 3000
-#
-## Run the application.
-#CMD npm start
+# Run the application as a non-root user.
+USER node
 
 ## Expose the port that the application listens on.
 EXPOSE 3000
 # Run application # switch between npm start (debug) and serve (for production).
-CMD [ "npm", "start" ]
-#CMD serve -s build
-#CMD docker run -p 3000:3000 frontend
-#RUN serve -s build
+#CMD [ "npm", "start" ]
+CMD ["serve", "-s", "build"]
