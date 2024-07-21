@@ -15,6 +15,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: 'dev'
+          path: ./${{ vars.DOCKER_IMAGE_NAME }}-dev
 
       # as per docker/build-push-action example
       - name: Build - Set up QEMU
@@ -36,6 +37,6 @@ jobs:
         id: build-and-push
         uses: docker/build-push-action@v5.3.0
         with:
-          context: ./${{ vars.DOCKER_IMAGE_NAME }}
+          context: ./${{ vars.DOCKER_IMAGE_NAME }}-dev
           push: true
           tags: ${{ secrets.DOCKERHUB_USER_ID }}/${{ vars.DOCKER_IMAGE_NAME }}-dev:${{ github.sha }}
