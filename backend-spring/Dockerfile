@@ -8,7 +8,7 @@
 # Create a stage for resolving and downloading dependencies.
 FROM eclipse-temurin:17-jdk-jammy as deps
 
-WORKDIR /backend-spring/build
+WORKDIR /build
 
 # Copy the mvnw wrapper with executable permissions.
 COPY --chmod=0755 mvnw mvnw
@@ -30,9 +30,9 @@ RUN --mount=type=bind,source=pom.xml,target=pom.xml \
 # use the relevant app server, e.g., using tomcat (https://hub.docker.com/_/tomcat/) as a base image.
 FROM deps as package
 
-WORKDIR /backend-spring/build
+WORKDIR /build
 
-COPY ./backend-spring/src backend-spring/src/
+COPY ./src src/
 RUN --mount=type=bind,source=pom.xml,target=pom.xml \
     --mount=type=cache,target=/root/.m2 \
     ./mvnw package -DskipTests && \
@@ -47,7 +47,7 @@ RUN --mount=type=bind,source=pom.xml,target=pom.xml \
 # https://docs.spring.io/spring-boot/docs/current/reference/html/container-images.html
 FROM package as extract
 
-WORKDIR /backend-spring/build
+WORKDIR /build
 
 RUN java -Djarmode=layertools -jar target/app.jar extract --destination target/extracted
 
@@ -79,10 +79,10 @@ RUN adduser \
 USER appuser
 
 # Copy the executable from the "package" stage.
-COPY --from=extract backend-spring/build/target/extracted/dependencies/ ./
-COPY --from=extract backend-spring/build/target/extracted/spring-boot-loader/ ./
-COPY --from=extract backend-spring/build/target/extracted/snapshot-dependencies/ ./
-COPY --from=extract backend-spring/build/target/extracted/application/ ./
+COPY --from=extract build/target/extracted/dependencies/ ./
+COPY --from=extract build/target/extracted/spring-boot-loader/ ./
+COPY --from=extract build/target/extracted/snapshot-dependencies/ ./
+COPY --from=extract build/target/extracted/application/ ./
 
 EXPOSE 8080
 
