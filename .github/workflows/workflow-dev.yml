@@ -48,4 +48,3 @@ jobs:
         uses: docker/bake-action@v5
         with:
           push: true
-          targets: frontend-react,backend-spring
