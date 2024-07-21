@@ -1,3 +1,8 @@
+# Note:
+This README.md was created by create-react-app.
+
+Please refer to README.md at root directory if you want to run this react-app.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
