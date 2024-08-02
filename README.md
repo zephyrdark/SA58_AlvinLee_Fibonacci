@@ -1,3 +1,7 @@
+**[NOTE]**: As of 1 Aug 2024, I have stopped the AWS EC2 instance. This repository will remain available.
+
+---
+
 # Coin Change Calculator
 
 ## 1. Description
@@ -19,9 +23,9 @@ The project is not fully fleshed out, and is still lacking the following:
 4. Frontend (Web/Mobile) Tests
 
 ## 2. Various Usages
-- Test the api via frontend UI at http://13.54.119.163:3000/
+- Test the api via frontend UI at `{YOUR_REACT_APP_IP_ADDRESS}`
 - Test the api via backend at Postman
-    > Example POST Request: http://13.54.119.163:8080/api/coin-request, HTTP Body, raw, JSON:
+    > Example POST Request: `{YOUR_SPRING_APP_IP_ADDRESS}/api/coin-request`, HTTP Body, raw, JSON:
     > ```
     > {
     >     "targetAmount": 1250.0,
@@ -48,7 +52,7 @@ The project is not fully fleshed out, and is still lacking the following:
 - Access the api via command line
     - Linux:
     > ```
-    > curl -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"targetAmount": 1250.0,"coinDenominations": [1000.0,100.0,50.0]}' http://13.54.119.163:8080/api/coin-request
+    > curl -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"targetAmount": 1250.0,"coinDenominations": [1000.0,100.0,50.0]}' {YOUR_SPRING_APP_IP_ADDRESS}/api/coin-request
     > ```
     > ![image](https://github.com/user-attachments/assets/664a313a-8022-451e-b5e7-ab809236a2fd)
 
