@@ -5,6 +5,7 @@ import axios from "axios";
 
 function App() {
     // retrieve CoinRequest from server
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
     const [myCoinRequestDetails, updateMyCoinRequestDetails] = useState([]);
 
     useEffect(() => {
@@ -20,7 +21,7 @@ function App() {
     function retrieveCoinRequest() {
         if (myCoinRequestDetails.length === 0) {
             axios
-                .get("http://localhost:8080/api/coin-request", {headers})
+                .get(backendUrl, {headers})
                 .then(response => {
                     updateMyCoinRequestDetails(response.data);
                     console.log(response.data);

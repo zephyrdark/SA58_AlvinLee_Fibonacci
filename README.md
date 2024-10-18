@@ -22,10 +22,29 @@ The project is not fully fleshed out, and is still lacking the following:
 3. Frontend (Mobile) Validations
 4. Frontend (Web/Mobile) Tests
 
-## 2. Various Usages
-- Test the api via frontend UI at `{YOUR_REACT_APP_IP_ADDRESS}`
+## 2. Building and running the web service locally using project files and Docker Desktop (No IDE Required)
+
+### Git Clone
+1. In your target directory, run
+    ```
+    git clone git@github.com:zephyrdark/SA58_AlvinLee_Fibonacci.git
+    ```
+
+### Full Web-App (Frontend React.js + Backend Spring)
+2. Ensure that your `Docker Desktop` is running.
+1. Change directory to `/SA58_AlvinLee_Fibonacci/`.
+2. Build the Wep-App by running:
+   ```
+   docker compose up --build
+   ```
+4. The frontend will be available at `http://localhost:3000`, and it is hardcoded to access its accompanying backend at `http://localhost:8080`.
+5. If you want, you can also use Postman to test the APIs as described in [Various Usages](https://github.com/zephyrdark/SA58_AlvinLee_Fibonacci/blob/main/README.md#2-various-usages).
+
+
+## 3. Various Usages
+- Test the api via frontend UI at `PROTOCOL://IP-ADDRESS:3000/`
 - Test the api via backend at Postman
-    > Example POST Request: `{YOUR_SPRING_APP_IP_ADDRESS}/api/coin-request`, HTTP Body, raw, JSON:
+    > Example POST Request: `PROTOCOL://IP-ADDRESS:8080/api/coin-request`, HTTP Body, raw, JSON:
     > ```
     > {
     >     "targetAmount": 1250.0,
@@ -52,53 +71,17 @@ The project is not fully fleshed out, and is still lacking the following:
 - Access the api via command line
     - Linux:
     > ```
-    > curl -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"targetAmount": 1250.0,"coinDenominations": [1000.0,100.0,50.0]}' {YOUR_SPRING_APP_IP_ADDRESS}/api/coin-request
+    > curl -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"targetAmount": 1250.0,"coinDenominations": [1000.0,100.0,50.0]}' PROTOCOL://IP-ADDRESS:8080/api/coin-request
     > ```
     > ![image](https://github.com/user-attachments/assets/664a313a-8022-451e-b5e7-ab809236a2fd)
 
 - Cloning and building your own project.
 
-## 3. Running the web service locally using project files (Using IDE)
-1. Using any modern IDEs (Recommended: Intellij), clone the project from Version Control System, using `git@github.com:zephyrdark/SA58_AlvinLee_Fibonacci.git`.
-2. Change directory to `/SA58_AlvinLee_Fibonacci/src/main/frontend`. Run the React App by running:
-   ```
-   npm start
-   ```
-   It will be available at `http://localhost:3000`.
-3. Run the Spring Boot application. It will be available at `http://localhost:8080/api/coin-request`, but it is recommended to use Postman as described in [Various Usages](https://github.com/zephyrdark/SA58_AlvinLee_Fibonacci?tab=readme-ov-file#2-various-usages).
-
-## 4. Building and running the web service locally using project files (Without IDE)
-
-### Git Clone
-In your target directory, run 
-```
-git clone git@github.com:zephyrdark/SA58_AlvinLee_Fibonacci.git
-```
-
-### Frontend (React.js App)
-1. Change directory to `/SA58_AlvinLee_Fibonacci/src/main/frontend`.
-2. Build the React App by running:
-   ```
-   npm run build
-   ```
-3. Serve the React App by running:
-   ```
-   serve -s build
-   ```
-4. It will be available at `http://localhost:3000`.
-
-### Backend (Spring Boot Server)
-1. Change directory to `/SA58_AlvinLee_Fibonacci`.
-2. Ensure that your `Docker Desktop` is running.
-3. Start your application by running:
-   ```
-   docker compose up --build
-   ```
-4. It will be available at `http://localhost:8080/api/coin-request`, but it is recommended to use Postman as described in [Various Usages](https://github.com/zephyrdark/SA58_AlvinLee_Fibonacci?tab=readme-ov-file#2-various-usages).
-
-## 5. Deploying your application to the cloud
+## 4. Deploying your application to the cloud
 Consult Docker's [getting started](https://docs.docker.com/go/get-started-sharing/)
 docs for more detail on building and pushing.
 
-## 6. Docker Image 
+You will need to make adjustments to the hardcoded IP-ADDRESS used for axios in `SA58_AlvinLee_Fibonacci/frontend-react/src/CoinRequest.js`'s `submit()`.
+
+## 5. Docker Image 
 Docker image of this project is automatically build and pushed using GitHub Actions workflow, and is available at https://hub.docker.com/repository/docker/alvinlee24/fibonacci-coins/general.
