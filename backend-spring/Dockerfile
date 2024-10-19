@@ -13,7 +13,6 @@ WORKDIR /build
 # Copy the mvnw wrapper with executable permissions.
 COPY --chmod=0755 mvnw mvnw
 COPY .mvn/ .mvn/
-RUN mvn wrapper:wrapper
 
 # Download dependencies as a separate step to take advantage of Docker's caching.
 # Leverage a cache mount to /root/.m2 so that subsequent builds don't have to
