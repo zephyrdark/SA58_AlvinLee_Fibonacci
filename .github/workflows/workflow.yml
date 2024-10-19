@@ -46,7 +46,7 @@ jobs:
         with:
           context: ./${{ vars.DOCKER_IMAGE_NAME }}/frontend-react
           push: true
-          tags: ${{ secrets.DOCKERHUB_USER_ID }}/${{ vars.DOCKER_IMAGE_NAME }}/frontend-react:${{ github.sha }}
+          tags: ${{ secrets.DOCKERHUB_USER_ID }}/${{ vars.DOCKER_IMAGE_NAME }}-frontend-react:${{ github.sha }}
 
       # build and push image using docker/build-push-action
       - name: Build backend and push to Docker
@@ -54,4 +54,4 @@ jobs:
         with:
           context: ./${{ vars.DOCKER_IMAGE_NAME }}/backend-spring
           push: true
-          tags: ${{ secrets.DOCKERHUB_USER_ID }}/${{ vars.DOCKER_IMAGE_NAME }}/backend-spring:${{ github.sha }}
+          tags: ${{ secrets.DOCKERHUB_USER_ID }}/${{ vars.DOCKER_IMAGE_NAME }}-backend-spring:${{ github.sha }}
